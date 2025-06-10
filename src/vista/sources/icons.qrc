@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>about_selected.svg</file>
+    <file>about.svg</file>
+    <file>configuracion_selected.svg</file>
+    <file>configuracion.svg</file>
+    <file>configuracion_selected.svg</file>
+    <file>configuracion.svg</file>
+    <file>correo.svg</file>
+    <file>dashboard_selected.svg</file>
+    <file>dashboard.svg</file>
+    <file>metas_selected.svg</file>
+    <file>metas.svg</file>
+    <file>oculto.svg</file>
+    <file>presupuestos_selected.svg</file>
+    <file>presupuestos.svg</file>
+    <file>reportes_selected.svg</file>
+    <file>reportes.svg</file>
+    <file>transacciones_selected.svg</file>
+    <file>transacciones.svg</file>
+    <file>visible.svg</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VentanaPrincipal</class>
+ <widget class="QMainWindow" name="VentanaPrincipal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>828</width>
+    <height>627</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionResumen">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/dashboard.svg</normaloff>
+     <activeon>:/icons/dashboard_selected.svg</activeon>:/icons/dashboard.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Dashboard</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionTransacciones">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/transacciones.svg</normaloff>
+     <activeon>:/icons/transacciones_selected.svg</activeon>:/icons/transacciones.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Transacciones</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionPresupuestos">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/presupuestos.svg</normaloff>
+     <activeon>:/icons/presupuestos_selected.svg</activeon>:/icons/presupuestos.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Presupuestos</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionMetas_Financieras">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/metas.svg</normaloff>
+     <normalon>../b8892e98/metas_selected.svg</normalon>
+     <activeon>:/icons/metas_selected.svg</activeon>:/icons/metas.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Metas Financieras</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionReportes">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/reportes.svg</normaloff>
+     <normalon>../../assets/iconos/reportes_selected.svg</normalon>
+     <activeon>:/icons/reportes_selected.svg</activeon>:/icons/reportes.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Reportes</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionConfiguraci_n">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/configuracion.svg</normaloff>
+     <normalon>../../assets/iconos/configuracion_selected.svg</normalon>
+     <activeon>:/icons/configuracion_selected.svg</activeon>:/icons/configuracion.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Configuración</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::PreferencesRole</enum>
+   </property>
+  </action>
+  <action name="actionSistema_de_Gesti_n_Financiera">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Sistema de Gestión Financiera</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionAcerca_de">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/about.svg</normaloff>
+     <normalon>../../assets/iconos/about_selected.svg</normalon>
+     <activeon>:/icons/about_selected.svg</activeon>:/icons/about.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Acerca de</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../ed7ec482/icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
