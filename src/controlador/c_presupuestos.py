@@ -11,20 +11,29 @@ from src.utils.manejador_archivos import ManejadorArchivos
 class CPresupuestos(QObject):
     def __init__(self):
         super().__init__()
-        self._correo_regex = re.compile(r'^[\w.%+-]+@[\w.-]+(\.[a-zA-Z]{2,})+$')
+        self._nombre_regex = re.compile(r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,25}$')
+        self._descripcion_regex = re.compile(r'^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s.,;:!?-_\']{1,250}$')
 
     @pyqtSlot(str, QLineEdit)
     def verificar_nombre_presupuesto(self, nombre, txt_nombre):
-        if not self._correo_regex.match(nombre):
-            print("Correo inválido (desde controlador)") # Para depuración
-            # Mostrar QToolTip
+        if not self._nombre_regex.match(nombre):
+            print("Nombre no válido para el presupuesto") # Para depuración
             txt_nombre.setStyleSheet("border: 1px solid red; background-color: #ffeeee;")
             return False
         else:
-            print(f"Correo '{txt_nombre}' es válido. (desde controlador)") # Para depuración
-            # Si era inválido y ahora es válido, ocultar cualquier tooltip anterior
             txt_nombre.setStyleSheet("")
             return True
+
+    @pyqtSlot(str, QLineEdit)
+    def verificar_nombre_presupuesto(self, desc, txt_desc):
+        if not self._descripcion_regex.match(desc):
+            print("Descripción no válida. Ingresó caracteres no permitidos") # Para depuración
+            txt_desc.setStyleSheet("border: 1px solid red; background-color: #ffeeee;")
+            return False
+        else:
+            txt_desc.setStyleSheet("")
+            return True
+
 
     @pyqtSlot(str, str, QLineEdit)
     def registrar_usuario(self, correo, contrasenia, nombre):
