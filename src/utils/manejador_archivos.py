@@ -6,7 +6,7 @@ class ManejadorArchivos:
 
     @staticmethod
     def cargar_archivo(nombre_archivo, objeto_por_defecto):
-        ruta_archivo = f"./data/{nombre_archivo}.dat"
+        ruta_archivo = f"./datos/{nombre_archivo}.dat"
         try:
             with open(ruta_archivo, "rb") as file:
                 return pickle.load(file)
@@ -15,13 +15,13 @@ class ManejadorArchivos:
 
     @staticmethod
     def guardar_archivo(nombre_archivo, objeto_a_guardar):
-        ruta_archivo = f"./data/{nombre_archivo}.dat"
+        ruta_archivo = f"./datos/{nombre_archivo}.dat"
         with open(ruta_archivo, "wb") as file:
             pickle.dump(objeto_a_guardar, file, pickle.HIGHEST_PROTOCOL)
 
     @staticmethod
     def borrar_archivo(nombre_archivo):
-        ruta_archivo = f"./data/{nombre_archivo}.dat"
+        ruta_archivo = f"./datos/{nombre_archivo}.dat"
         try:
             if os.path.exists(ruta_archivo):
                 os.remove(ruta_archivo)

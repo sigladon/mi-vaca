@@ -2,9 +2,9 @@ import uuid
 from PyQt6.QtCore import QObject, pyqtSlot
 import re
 
-from PyQt6.QtWidgets import QToolTip, QLineEdit
+from PyQt6.QtWidgets import QLineEdit
 
-from src.modelo.usuario import Usuario
+from src.modelo.entidades.usuario import Usuario
 from src.utils.manejador_archivos import ManejadorArchivos
 
 

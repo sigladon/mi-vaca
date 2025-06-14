@@ -45,58 +45,7 @@
    </item>
    <item row="1" column="1">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="7" column="1" colspan="2">
-      <widget class="QLabel" name="lbl_repetir_contrasenia">
-       <property name="text">
-        <string>Confirma tu contraseña:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1" colspan="2">
-      <widget class="QLabel" name="lbl_contrasenia">
-       <property name="text">
-        <string>Contraseña:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1" colspan="3">
-      <widget class="QLineEdit" name="txt_correo">
-       <property name="toolTip">
-        <string>Debes ingresar un correo electrónico válido</string>
-       </property>
-       <property name="placeholderText">
-        <string>Ingresa tu correo electrónico</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3">
-      <widget class="QPushButton" name="btn_mostrar_contrasenia">
-       <property name="text">
-        <string>Mostrar</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1" colspan="3">
-      <widget class="QLabel" name="lbl_correo">
-       <property name="text">
-        <string>Correo electrónico:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1" colspan="3">
-      <widget class="QLineEdit" name="txt_contrasenia">
-       <property name="toolTip">
-        <string>Debe contener al menos 8 caracteres</string>
-       </property>
-       <property name="echoMode">
-        <enum>QLineEdit::EchoMode::Password</enum>
-       </property>
-       <property name="placeholderText">
-        <string>Ingresa una contraseña</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="3">
+     <item row="9" column="3">
       <widget class="QPushButton" name="btn_mostrar_repetir_contrasenia">
        <property name="text">
         <string>Mostrar</string>
@@ -113,14 +62,44 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1" colspan="3">
-      <widget class="QLabel" name="lbl_titulo">
+     <item row="6" column="1" colspan="3">
+      <widget class="QLineEdit" name="txt_correo">
+       <property name="toolTip">
+        <string>Debes ingresar un correo electrónico válido</string>
+       </property>
+       <property name="placeholderText">
+        <string>Ingresa tu correo electrónico</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1" colspan="3">
+      <widget class="QLabel" name="lbl_correo">
        <property name="text">
-        <string>Ingresa tus datos:</string>
+        <string>Correo electrónico:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1" colspan="2">
+      <widget class="QLabel" name="lbl_repetir_contrasenia">
+       <property name="text">
+        <string>Confirma tu contraseña:</string>
        </property>
       </widget>
      </item>
      <item row="8" column="1" colspan="3">
+      <widget class="QLineEdit" name="txt_contrasenia">
+       <property name="toolTip">
+        <string>Debe contener al menos 8 caracteres</string>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::EchoMode::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Ingresa una contraseña</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="1" colspan="3">
       <widget class="QLineEdit" name="txt_repetir_contrasenia">
        <property name="toolTip">
         <string>Debe coincidir con la contraseña ingresada en el campo anterior</string>
@@ -133,24 +112,59 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1" colspan="3">
-      <widget class="QLabel" name="lbl_nombre">
+     <item row="11" column="1">
+      <widget class="QPushButton" name="btn_volver">
        <property name="text">
-        <string>Nombre:</string>
+        <string>Regresar</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="3">
+     <item row="11" column="3">
       <widget class="QPushButton" name="btn_registrarse">
        <property name="text">
         <string>Registrarse</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="1">
-      <widget class="QPushButton" name="btn_volver">
+     <item row="7" column="3">
+      <widget class="QPushButton" name="btn_mostrar_contrasenia">
        <property name="text">
-        <string>Regresar</string>
+        <string>Mostrar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1" colspan="2">
+      <widget class="QLabel" name="lbl_contrasenia">
+       <property name="text">
+        <string>Contraseña:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" colspan="3">
+      <widget class="QLabel" name="lbl_titulo">
+       <property name="text">
+        <string>Ingresa tus datos:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="3">
+      <widget class="QLabel" name="lbl_nombre">
+       <property name="text">
+        <string>Nombre y apellido:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1" colspan="3">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Nombre de usuario</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1" colspan="3">
+      <widget class="QLineEdit" name="txt_username">
+       <property name="placeholderText">
+        <string>Ingresa un nombre de usuario</string>
        </property>
       </widget>
      </item>
@@ -186,11 +200,14 @@
  </widget>
  <tabstops>
   <tabstop>txt_nombre</tabstop>
+  <tabstop>txt_username</tabstop>
   <tabstop>txt_correo</tabstop>
   <tabstop>txt_contrasenia</tabstop>
   <tabstop>btn_mostrar_contrasenia</tabstop>
   <tabstop>txt_repetir_contrasenia</tabstop>
   <tabstop>btn_mostrar_repetir_contrasenia</tabstop>
+  <tabstop>btn_registrarse</tabstop>
+  <tabstop>btn_volver</tabstop>
  </tabstops>
  <resources/>
  <connections/>

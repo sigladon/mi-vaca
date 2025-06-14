@@ -1,10 +1,9 @@
 from PyQt6.QtCore import QObject, pyqtSlot
 import re
 
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QToolTip, QLineEdit
+from PyQt6.QtWidgets import QLineEdit
 
-from src.modelo.autenticacion import Autenticacion
+from src.modelo.entidades.autenticacion import Autenticacion
 from src.utils.manejador_archivos import ManejadorArchivos
 
 

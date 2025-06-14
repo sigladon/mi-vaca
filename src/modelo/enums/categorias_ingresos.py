@@ -1,5 +1,5 @@
 from enum import Enum
-from src.modelo.categoria import Categoria
+from src.modelo.entidades.categoria import Categoria
 
 class CategoriasIngresos(Enum):
     SALARIO = Categoria(
