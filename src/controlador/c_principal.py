@@ -1,9 +1,15 @@
 from PyQt6.QtCore import QObject
 from PyQt6.QtWidgets import QWidget, QPushButton, QSizePolicy
 
+from src.controlador.c_presupuestos import CPresupuestos
+from src.controlador.c_transacciones import CTransaccion
 from src.controlador.c_usuario import CUsuario
 from src.utils.manejador_archivos import ManejadorArchivos
 from src.vista.login import Login
+from src.vista.panel_bienvenida import PanelBienvenida
+from src.vista.panel_metas import PanelMetas
+from src.vista.panel_presupuestos import PanelPresupuesto
+from src.vista.panel_transacciones import PanelTransacciones
 from src.vista.registrarse import Registrarse
 from src.vista.ventana_principal import VentanaPrincipal
 
@@ -11,6 +17,8 @@ from src.vista.ventana_principal import VentanaPrincipal
 class CPrincipal(QObject):
     def __init__(self):
         super().__init__()
+        self.c_presupuesto = None
+        self._usuario = None
         self.c_usuario = None
         self._vista = VentanaPrincipal()
         self._vista.show()
@@ -75,10 +83,11 @@ class CPrincipal(QObject):
         vista_registrarse.solicitar_mostrar_login.connect(self.mostrar_vista_login)
 
     def mostrar_vista_bienvenida(self):
-        self.sidebar.show()
-        self.usuario = ManejadorArchivos.cargar_archivo(self.token.uuid, None)
-        self._vista.panel_bienvenida = PanelBienvenida(self.usuario)
-        self.cambiar_vista_central(self.panel_bienvenida)
+        self._vista.sidebar.show()
+        token = ManejadorArchivos.cargar_archivo("token", None)
+        self._usuario = ManejadorArchivos.cargar_archivo(token.uuid, None)
+        panel_bienvenida = PanelBienvenida(self._usuario)
+        self.cambiar_vista_central(panel_bienvenida)
         self._vista.setWindowTitle("Sistema de Gestión Financiera - Bienvenida")
 
     def mostrar_vista_metas(self):
@@ -87,13 +96,15 @@ class CPrincipal(QObject):
         self._vista.setWindowTitle("Sistema de Gestión Financiera - Metas")
 
     def mostrar_vista_transacciones(self):
-        self.panel_transacciones = PanelTransacciones(self.usuario)
-        self.cambiar_vista_central(self.panel_transacciones)
+        panel_transacciones = PanelTransacciones()
+        self.c_transaccion = CTransaccion(panel_transacciones, self._usuario)
+        self.cambiar_vista_central(panel_transacciones)
         self._vista.setWindowTitle("Sistema de Gestión Financiera - Transacciones")
 
     def mostrar_vista_presupuestos(self):
-        self.panel_presupuestos = PanelPresupuesto(self.usuario)
-        self.cambiar_vista_central(self.panel_presupuestos)
+        panel_presupuestos = PanelPresupuesto()
+        self.c_presupuesto = CPresupuestos(panel_presupuestos, self._usuario)
+        self.cambiar_vista_central(panel_presupuestos)
         self._vista.setWindowTitle("Sistema de Gestión Financiera - Presupuestos")
 
     def cerrar_sesion(self):

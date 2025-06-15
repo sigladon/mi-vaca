@@ -6,170 +6,219 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>481</width>
-    <height>476</height>
+    <width>379</width>
+    <height>554</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="1">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_5">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <widget class="QLabel" name="lbl_nombre_modal">
+       <property name="text">
+        <string>Crear Nuevo Presupuesto</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_cerrar_modal">
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>x</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>367</width>
+        <height>430</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QLabel" name="label">
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>Crear Nuevo Presupuesto</string>
+            <string>Nombre del presupuesto:</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_2">
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Establecer un límite de gasto para una categoría</string>
+            <string>Límite del presupuesto:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="txt_nombre_presupuesto">
+           <property name="placeholderText">
+            <string>Ej: Gastos del hogar</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="txt_limite_presupuesto">
+           <property name="maximumSize">
+            <size>
+             <width>160</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="placeholderText">
+            <string>0.00</string>
            </property>
           </widget>
          </item>
         </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_cerrar_modal">
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>x</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Fecha de inicio</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="fch_fecha_inicio">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Fecha de fin</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="fch_fecha_fin">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Periodo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="2">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Descripción (opcional)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0" colspan="2">
-        <widget class="QCheckBox" name="cbx_recibir_notificaciones">
-         <property name="text">
-          <string>Recibir notificaciones al alcanzar el 80% del presupuesto</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0" colspan="2">
-        <widget class="QPlainTextEdit" name="ptxt_notas_presupuesto">
-         <property name="placeholderText">
-          <string>Notas sobre este presupuesto</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
+       <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Categoría</string>
+          <string>Categorías de Gasto</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_4">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLineEdit" name="txt_nombre_categoria">
+           <property name="placeholderText">
+            <string>Nombre de categoría</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_agregar_categoria">
+           <property name="text">
+            <string>Agregar</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QWidget" name="contenedor_categoria" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout"/>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>Monto del presupuesto</string>
+          <string>Notas</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QComboBox" name="cmb_seleccionar_categoria_presupuesto">
-         <property name="maximumSize">
-          <size>
-           <width>420</width>
-           <height>16777215</height>
-          </size>
-         </property>
+       <item>
+        <widget class="QPlainTextEdit" name="ptxt_notas">
          <property name="placeholderText">
-          <string>Seleccionar categoría</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QComboBox" name="cmb_periodo_presupuesto">
-         <property name="maximumSize">
-          <size>
-           <width>180</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLineEdit" name="txt_monto_presupuesto">
-         <property name="maximumSize">
-          <size>
-           <width>160</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="placeholderText">
-          <string>0.00</string>
+          <string>Agrega cualquier información adicional sobre este presupuesto...</string>
          </property>
         </widget>
        </item>
       </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbx_recibir_notificaciones">
+     <property name="text">
+      <string>Recibir notificaciones al alcanzar el 80% del presupuesto</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QPushButton" name="btn_borrar_presupuesto">
+       <property name="text">
+        <string>Borrar</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btn_crear_presupuesto">
        <property name="text">
-        <string>Crear Presupuesto</string>
+        <string>Crear</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="0" column="2">
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>btn_cerrar_modal</tabstop>
+  <tabstop>txt_nombre_presupuesto</tabstop>
+  <tabstop>txt_limite_presupuesto</tabstop>
+  <tabstop>fch_fecha_inicio</tabstop>
+  <tabstop>fch_fecha_fin</tabstop>
+  <tabstop>txt_nombre_categoria</tabstop>
+  <tabstop>btn_agregar_categoria</tabstop>
+  <tabstop>ptxt_notas</tabstop>
+  <tabstop>cbx_recibir_notificaciones</tabstop>
+  <tabstop>btn_crear_presupuesto</tabstop>
+  <tabstop>btn_borrar_presupuesto</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

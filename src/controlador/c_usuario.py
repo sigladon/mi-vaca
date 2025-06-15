@@ -3,6 +3,7 @@ import re
 from PyQt6.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt6.QtWidgets import QLineEdit, QWidget
 
+from src.modelo.entidades.token import Token
 from src.modelo.entidades.usuario import Usuario
 from src.utils.manejador_archivos import ManejadorArchivos
 from src.vista.login import Login
@@ -37,6 +38,7 @@ class CUsuario(QObject):
                 lambda: self.verificar_contrasenia_repetida(self._vista.ui.txt_contrasenia.text())
             )
             self._vista.ui.btn_registrarse.clicked.connect(self.registrarse)
+            self._vista.ui.btn_volver.clicked.connect(self._volver_al_login)
 
 
     def verificar_username_registro(self):
@@ -132,7 +134,10 @@ class CUsuario(QObject):
             return False
         txt_identificacion.setStyleSheet("")
         print(f"Ingresó el usuario {usuario.nombre}")
-        return usuario
+        token = Token(id_usuario)
+        ManejadorArchivos.guardar_archivo("token", token)
+        self._vista.emitir_solicitar_mostrar_bienvenida()
+        return True
 
     def registrarse(self):
         nombre = self._vista.ui.txt_nombre.text()
@@ -152,6 +157,9 @@ class CUsuario(QObject):
         ManejadorArchivos.guardar_archivo(id_usuario,nuevo_usuario)
         ManejadorArchivos.guardar_archivo("usuarios",self._usuarios)
         print("Se registró el usuario correctamente")
+        self._volver_al_login()
+
+    def _volver_al_login(self):
         self._vista.emitir_solicitar_mostrar_login()
 
     @staticmethod

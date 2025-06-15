@@ -15,6 +15,7 @@ class Login(QWidget):
         self.ui = Ui_VentanaIniciarSesion()
         self.ui.setupUi(self)
         self.ui.btn_mostrar_ocultar_contrasenia.setIcon(QIcon("./assets/iconos/visible.svg"))
+        self.ui.btn_mostrar_ocultar_contrasenia.clicked.connect(self.mostrar_ocultar_contrasenia)
 
     def mostrar_ocultar_contrasenia(self):
         if self.ui.txt_contrasenia.echoMode() == QLineEdit.EchoMode.Password:
