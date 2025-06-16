@@ -5,7 +5,6 @@ from dataclasses import dataclass, field
 from src.modelo.entidades.categoria import Categoria
 from src.modelo.entidades.meta import Meta
 from src.modelo.entidades.movimiento import Movimiento
-from src.modelo.entidades.movimiento_recurrente import MovimientoRecurrente
 from src.modelo.entidades.presupuesto import Presupuesto
 
 @dataclass
@@ -16,7 +15,6 @@ class Usuario:
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
     correo: list[str] = field(default_factory=list)
     movimientos: list[Movimiento] = field(default_factory=list)
-    movimientosRecurrentes: list[MovimientoRecurrente] = field(default_factory=list)
     presupuestos: list[Presupuesto] = field(default_factory=list)
     metas: list[Meta] = field(default_factory=list)
     categorias: list[Categoria] = field(default_factory=list)

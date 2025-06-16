@@ -27,8 +27,8 @@ class Presupuesto:
     def obtener_monto_gastado(self, movimientos: List['Movimiento']) -> Decimal:
         """Calcula el monto gastado en el presupuesto"""
         return reduce(
-            lambda total, mov: total + (mov.monto if mov.tipo_movimiento == TipoMovimiento.EGRESO else -mov.monto),
-            filter(lambda m: m.id_vinculado == self.id and m.estado == EstadoMovimiento.COMPLETADO, movimientos),
+            lambda total, mov: total + mov.monto,
+            filter(lambda m: m.estado == EstadoMovimiento.COMPLETADO, movimientos),
             Decimal('0')
         )
 
@@ -45,4 +45,4 @@ class Presupuesto:
 
     def agregar_egreso(self, id_egreso: str):
         """Agrega un egreso al presupuesto"""
-        self.movimientos = id_egreso
+        self.movimientos.add(id_egreso)

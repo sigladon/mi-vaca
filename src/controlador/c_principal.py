@@ -1,36 +1,44 @@
-from PyQt6.QtCore import QObject
-from PyQt6.QtWidgets import QWidget, QPushButton, QSizePolicy
+from PyQt6.QtCore import QObject, QSize
+from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QWidget, QPushButton, QSizePolicy, QMessageBox
 
+from src.controlador.c_metas import CMetas
 from src.controlador.c_presupuestos import CPresupuestos
+from src.controlador.c_reportes import CReportes
 from src.controlador.c_transacciones import CTransaccion
 from src.controlador.c_usuario import CUsuario
 from src.utils.manejador_archivos import ManejadorArchivos
-from src.vista.login import Login
+from src.vista.panel_acerca_de import PanelAcercaDe
+from src.vista.panel_login import Login
 from src.vista.panel_bienvenida import PanelBienvenida
 from src.vista.panel_metas import PanelMetas
 from src.vista.panel_presupuestos import PanelPresupuesto
+from src.vista.panel_reportes import PanelReportes
 from src.vista.panel_transacciones import PanelTransacciones
-from src.vista.registrarse import Registrarse
+from src.vista.panel_registrarse import Registrarse
 from src.vista.ventana_principal import VentanaPrincipal
 
 
 class CPrincipal(QObject):
     def __init__(self):
         super().__init__()
+        self.c_reportes = None
+        self.nombre_programa = "Mi vaca"
+        self.c_transaccion = None
         self.c_presupuesto = None
         self._usuario = None
         self.c_usuario = None
         self._vista = VentanaPrincipal()
         self._vista.show()
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Dashboard", lambda: print("Dashboard")))
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Presupuestos", self.mostrar_vista_presupuestos))
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Transacciones", self.mostrar_vista_transacciones))
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Metas Financieras", self.mostrar_vista_metas))
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Reportes", lambda: print("Reportes")))
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Configuración", lambda: print("Configuración")))
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Acerca de...", lambda: print("Acerca de")))
+        # self._vista.sidebar_layout.addWidget(self._crear_boton("Dashboard", lambda: print("Dashboard")))
+        self._vista.sidebar_layout.addWidget(self._crear_boton("Presupuestos", "presupuestos", self.mostrar_vista_presupuestos))
+        self._vista.sidebar_layout.addWidget(self._crear_boton("Transacciones", "transacciones", self.mostrar_vista_transacciones))
+        self._vista.sidebar_layout.addWidget(self._crear_boton("Metas Financieras", "metas_financieras", self.mostrar_vista_metas))
+        self._vista.sidebar_layout.addWidget(self._crear_boton("Reportes", "reportes", self.mostrar_vista_reportes))
+        # self._vista.sidebar_layout.addWidget(self._crear_boton("Configuración", lambda: print("Configuración")))
+        self._vista.sidebar_layout.addWidget(self._crear_boton("Acerca de...", "about", self.mostrar_vista_acerca_de))
         self._vista.sidebar_layout.addStretch()
-        self._vista.sidebar_layout.addWidget(self._crear_boton("Cerrar Sesión", self.cerrar_sesion))
+        self._vista.sidebar_layout.addWidget(self._crear_boton("Cerrar Sesión", "cerrar_sesion", self.cerrar_sesion))
 
         self.token = ManejadorArchivos.cargar_archivo("token",None)
         if self.token is None:
@@ -42,9 +50,11 @@ class CPrincipal(QObject):
             self.mostrar_vista_bienvenida()
 
     @staticmethod
-    def _crear_boton(texto, callback):
+    def _crear_boton(texto, icono, callback):
         boton = QPushButton(texto)
         boton.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        boton.setIcon(QIcon(f"./assets/iconos/{icono}.svg"))
+        boton.setIconSize(QSize(24,24))
         boton.setStyleSheet("""
             QPushButton {
                 text-align: left;
@@ -91,8 +101,9 @@ class CPrincipal(QObject):
         self._vista.setWindowTitle("Sistema de Gestión Financiera - Bienvenida")
 
     def mostrar_vista_metas(self):
-        self.panel_metas = PanelMetas(self.usuario)
-        self.cambiar_vista_central(self.panel_metas)
+        panel_metas = PanelMetas()
+        self.c_metas = CMetas(panel_metas, self._usuario)
+        self.cambiar_vista_central(panel_metas)
         self._vista.setWindowTitle("Sistema de Gestión Financiera - Metas")
 
     def mostrar_vista_transacciones(self):
@@ -107,6 +118,26 @@ class CPrincipal(QObject):
         self.cambiar_vista_central(panel_presupuestos)
         self._vista.setWindowTitle("Sistema de Gestión Financiera - Presupuestos")
 
+    def mostrar_vista_acerca_de(self):
+        panel_acerca_de = PanelAcercaDe()
+        self.cambiar_vista_central(panel_acerca_de)
+        self._vista.setWindowTitle(f"{self.nombre_programa} - Acerca de")
+
+    def mostrar_vista_reportes(self):
+        panel_acerca_de = PanelReportes()
+        self.c_reportes = CReportes(panel_acerca_de, self._usuario)
+        self.cambiar_vista_central(panel_acerca_de)
+        self._vista.setWindowTitle(f"{self.nombre_programa} - Acerca de")
+
     def cerrar_sesion(self):
-        ManejadorArchivos.borrar_archivo("token")
-        self.mostrar_vista_login()
+        respuesta = QMessageBox.question(
+            self._vista,
+            "Confirmar cerrar sesión",
+            f"¿Estás seguro de querer cerrar sesión?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No
+        )
+
+        if respuesta == QMessageBox.StandardButton.Yes:
+            ManejadorArchivos.borrar_archivo("token")
+            self.mostrar_vista_login()

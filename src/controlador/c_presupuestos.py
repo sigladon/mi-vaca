@@ -64,7 +64,7 @@ class CPresupuestos(QObject):
         if nombre == "":
             txt_nombre.setStyleSheet("")
             self.nombre_valido = False
-        elif not self._validar_nombre(nombre):
+        elif not self.validar_nombre(nombre):
             print("El nombre del presupuesto no es válido") # Para depuración
             txt_nombre.setStyleSheet("border: 1px solid red; background-color: #ffeeee;")
             self.nombre_valido = False
@@ -121,7 +121,7 @@ class CPresupuestos(QObject):
             print("El nombre de la categoría no puede estar vacío")
             return
 
-        if not self._validar_nombre(nombre_categoria):
+        if not self.validar_nombre(nombre_categoria):
             print("El nombre de la categoría no es válido") # Para depuración
             return
 
@@ -335,7 +335,7 @@ class CPresupuestos(QObject):
             self.actualizar_vista_categorias()
 
     @staticmethod
-    def _validar_nombre(nombre):
+    def validar_nombre(nombre):
         regex_nombre = re.compile(r"^[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,50}$")
         return regex_nombre.match(nombre)
 
@@ -468,9 +468,9 @@ class CPresupuestos(QObject):
 
         layout_info.addLayout(layout_nombre)
 
-        movimientos_presupuesto = self._usuario.movimientos
-        monto_gastado = presupuesto.obtener_monto_gastado(list(filter(lambda m: m.id_vinculado == presupuesto.id, movimientos_presupuesto)))
-        porcentaje = presupuesto.obtener_porcentaje(movimientos_presupuesto)
+        lista_movimientos = list(filter(lambda m: m.id in presupuesto.movimientos, self._usuario.movimientos))
+        monto_gastado = presupuesto.obtener_monto_gastado(lista_movimientos)
+        porcentaje = presupuesto.obtener_porcentaje(lista_movimientos)
 
         aux = Decimal("0.01")
         lbl_limite = QLabel(f"Limite: ${presupuesto.limite.quantize(aux)}")

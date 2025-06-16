@@ -1,0 +1,96 @@
+/* Paleta base */
+* {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+    color: #1f2937; /* slate-800 */
+}
+
+/* Ventana principal */
+QMainWindow {
+    background-color: #f9fafb; /* slate-50 */
+}
+
+/* Sidebar */
+QFrame {
+    border-right: 1px solid #e5e7eb; /* slate-200 */
+}
+
+/* Botones */
+QPushButton {
+    background-color: #e2e8f0; /* slate-200 */
+    border: none;
+    border-radius: 8px;
+    padding: 0;
+    margin: 4px 8px;
+    color: #1e293b; /* slate-800 */
+}
+
+QPushButton:hover {
+    background-color: #cbd5e1; /* slate-300 */
+}
+
+QPushButton:pressed {
+    background-color: #94a3b8; /* slate-400 */
+    color: white;
+}
+
+/* Campos de texto */
+QLineEdit, QTextEdit {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1; /* slate-300 */
+    border-radius: 6px;
+    padding: 6px;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border: 1px solid #6366f1; /* indigo-500 */
+    outline: none;
+}
+
+/* Scrollbars */
+QScrollBar:vertical, QScrollBar:horizontal {
+    background-color: transparent;
+    width: 8px;
+    height: 8px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background-color: #cbd5e1; /* slate-300 */
+    border-radius: 4px;
+}
+
+QScrollBar::handle:hover {
+    background-color: #94a3b8; /* slate-400 */
+}
+
+/* Etiquetas */
+QLabel {
+    color: #334155; /* slate-700 */
+    font-weight: 500;
+    padding: 0;
+}
+
+/* Tabs */
+QTabWidget::pane {
+    border: 1px solid #e5e7eb; /* slate-200 */
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QTabBar::tab {
+    background: #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:selected {
+    background: #6366f1;
+    color: white;
+}
+
+/* Separadores */
+QFrame[frameShape="4"] { /* QFrame.HLine */
+    border: 1px solid #e5e7eb;
+    margin: 8px 0;
+}

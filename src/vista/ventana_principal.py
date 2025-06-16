@@ -9,6 +9,10 @@ class VentanaPrincipal(QMainWindow):
         super().__init__()
         self._ui = Ui_VentanaPrincipal()
         self._ui.setupUi(self)
+        with open("./utils/estilo.qss", "r") as f:
+            estilo = f.read()
+            self.setStyleSheet(estilo)
+
 
         self.sidebar = QFrame()
         self.sidebar.setFrameShape(QFrame.Shape.StyledPanel)

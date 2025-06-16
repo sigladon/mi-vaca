@@ -2,7 +2,6 @@ import sys
 from PyQt6.QtWidgets import QApplication
 
 from src.controlador.c_principal import CPrincipal
-from src.vista.ventana_principal import VentanaPrincipal
 
 
 class App(QApplication):

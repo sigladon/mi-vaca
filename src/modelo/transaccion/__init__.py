@@ -1,1 +1,0 @@
-from .transaccion import Transaccion

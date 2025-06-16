@@ -6,8 +6,8 @@ from PyQt6.QtWidgets import QLineEdit, QWidget
 from src.modelo.entidades.token import Token
 from src.modelo.entidades.usuario import Usuario
 from src.utils.manejador_archivos import ManejadorArchivos
-from src.vista.login import Login
-from src.vista.registrarse import Registrarse
+from src.vista.panel_login import Login
+from src.vista.panel_registrarse import Registrarse
 
 
 class CUsuario(QObject):

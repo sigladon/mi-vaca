@@ -12,6 +12,187 @@ class PanelTransacciones(QWidget):
         self.overlay: OverlayTransaccion | None = None
         self.ui = Ui_PanelTransacciones()
         self.ui.setupUi(self)
+        self.ui.btn_registrar_transaccion.setFixedSize(300,60)
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #f8f9fa; /* Fondo gris muy claro, casi blanco */
+                font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            }
+
+            /* Estilos para el encabezado principal */
+            QLabel#label { /* "Gestión de Transacciones" */
+                font-size: 24px;
+                font-weight: bold;
+                color: #343a40; /* Gris oscuro para el título */
+                margin-bottom: 5px;
+            }
+
+            QLabel#label_2 { /* "Registra y categoriza tus ingresos y gastos" */
+                font-size: 14px;
+                color: #6c757d; /* Gris más claro para la descripción */
+                margin-bottom: 15px;
+            }
+
+            /* Estilo para el botón principal "Registrar Movimiento" */
+            QPushButton#btn_registrar_transaccion {
+                background-color: #007bff; /* Azul primario para acción principal */
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: 20px;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            QPushButton#btn_registrar_transaccion:hover {
+                background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+            }
+            QPushButton#btn_registrar_transaccion:pressed {
+                background-color: #004085; /* Azul aún más oscuro al presionar */
+            }
+
+            /* Estilos para etiquetas de filtros */
+            QLabel#lbl_tipo, QLabel#lbl_presupuesto_categoria, QLabel#lbl_categoria {
+                font-size: 14px;
+                color: #495057; /* Gris medio */
+                padding-left: 5px; /* Pequeño padding para alinear con el combo box */
+            }
+
+            /* Estilos para los QComboBox (selectores de filtro) */
+            QComboBox {
+                padding: 8px 10px;
+                border: 1px solid #ced4da; /* Borde suave */
+                border-radius: 5px;
+                font-size: 14px;
+                background-color: #ffffff;
+                selection-background-color: #007bff; /* Fondo azul al seleccionar */
+                selection-color: white; /* Texto blanco al seleccionar */
+            }
+
+            QComboBox::drop-down {
+                border: none;
+                background-color: transparent;
+                width: 25px; /* Ancho del botón de flecha */
+            }
+
+            QComboBox::down-arrow {
+                image: url(./assets/iconos/arrow_down.svg); /* Asegúrate de tener este icono */
+                width: 16px;
+                height: 16px;
+            }
+            
+            QComboBox:hover {
+                border-color: #a8dadc; /* Borde más claro al pasar el ratón */
+            }
+
+            QComboBox:on { /* Cuando el combo box está abierto */
+                border-color: #007bff;
+            }
+
+            /* Estilos para los botones de acción de filtros */
+            QPushButton#btn_buscar_transacciones {
+                background-color: #6c757d; /* Gris para botones secundarios */
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: normal;
+                margin-top: 10px;
+            }
+
+            QPushButton#btn_buscar_transacciones:hover {
+                background-color: #5a6268;
+            }
+
+            QPushButton#btn_limpiar_filtros {
+                background-color: #dc3545; /* Rojo para botón de acción de "limpiar/peligro" */
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: normal;
+                margin-top: 10px;
+            }
+            QPushButton#btn_limpiar_filtros:hover {
+                background-color: #c82333;
+            }
+
+            /* Estilo para el título del historial */
+            QLabel#label_3 { /* "Historial de Transacciones" */
+                font-size: 18px;
+                font-weight: bold;
+                color: #343a40;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            /* Estilos para la tabla de transacciones (QTableView) */
+            QTableView {
+                border: 1px solid #dee2e6; /* Borde general de la tabla */
+                border-radius: 8px;
+                gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */
+                background-color: #ffffff;
+                selection-background-color: #cfe2ff; /* Fondo para filas seleccionadas */
+                selection-color: #343a40; /* Texto para filas seleccionadas */
+            }
+
+            QHeaderView::section { /* Estilo para los encabezados de la tabla */
+                background-color: #e9ecef; /* Fondo de los encabezados */
+                color: #495057; /* Color del texto del encabezado */
+                padding: 8px;
+                border: 1px solid #dee2e6;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            QHeaderView::section:horizontal {
+                border-bottom: 2px solid #007bff; /* Borde inferior azul para los encabezados */
+            }
+
+            QTableView::item { /* Estilo para las celdas individuales */
+                padding: 6px;
+                border: none; /* Eliminar bordes internos duplicados */
+            }
+
+            QTableView::item:selected {
+                background-color: #cfe2ff; /* Color de fondo al seleccionar un ítem */
+                color: #343a40; /* Color del texto al seleccionar un ítem */
+            }
+
+            /* Estilo para el área de scroll y scrollbar */
+            QScrollArea {
+                border: none; /* La tabla ya tiene su propio borde */
+                background-color: transparent;
+            }
+            
+            QScrollArea QWidget#scrollAreaWidgetContents {
+                background-color: #ffffff; /* Asegura que el fondo del contenido sea blanco */
+            }
+
+            QScrollBar:vertical {
+                border: none;
+                background: #e9ecef;
+                width: 10px;
+                margin: 0px 0px 0px 0px;
+                border-radius: 5px;
+            }
+            QScrollBar::handle:vertical {
+                background: #adb5bd;
+                min-height: 20px;
+                border-radius: 5px;
+            }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                height: 0px;
+            }
+            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+                background: none;
+            }
+        """)
 
     def mostrar_modal(self, editando: bool = False):
         if editando:
@@ -35,8 +216,18 @@ class PanelTransacciones(QWidget):
 
             if respuesta == QMessageBox.StandardButton.Yes:
                 self.overlay.hide()
+                self.limpiar_formulario()
         else:
             self.overlay.hide()
+            self.limpiar_formulario()
+
+    def limpiar_formulario(self):
+        self.overlay.ui.ptxt_notas_adicionales.clear()
+        self.overlay.ui.txt_monto_transaccion.clear()
+        self.overlay.ui.txt_descripcion_transaccion.clear()
+        self.overlay.ui.cmb_tipo_transaccion.clear()
+        self.overlay.ui.cmb_presupuesto_meta.clear()
+        self.overlay.ui.cmb_categoria_transaccion.clear()
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
